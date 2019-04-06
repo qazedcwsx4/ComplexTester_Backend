@@ -28,58 +28,6 @@
                 </div>
             </div>
         <?php endforeach ?>
-        <div class="col l6 m6 s6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title"><?= $test->name ?></span>
-                    <p><?= $test->description ?></p>
-                    <p class="bold right"><?= $test->author ?></p>
-
-                </div>
-                <div class="card-action">
-                    <a href="#">Rozpocznij ten test</a>
-                </div>
-            </div>
-        </div>
-        <div class="col l6 m6 s6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title"><?= $test->name ?></span>
-                    <p><?= $test->description ?></p>
-                    <p class="bold right"><?= $test->author ?></p>
-
-                </div>
-                <div class="card-action">
-                    <a href="#">Rozpocznij ten test</a>
-                </div>
-            </div>
-        </div>
-        <div class="col l6 m6 s6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title"><?= $test->name ?></span>
-                    <p><?= $test->description ?></p>
-                    <p class="bold right"><?= $test->author ?></p>
-
-                </div>
-                <div class="card-action">
-                    <a href="#">Rozpocznij ten test</a>
-                </div>
-            </div>
-        </div>
-        <div class="col l6 m6 s6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title"><?= $test->name ?></span>
-                    <p><?= $test->description ?></p>
-                    <p class="bold right"><?= $test->author ?></p>
-
-                </div>
-                <div class="card-action">
-                    <a href="#">Rozpocznij ten test</a>
-                </div>
-            </div>
-        </div>
         <a href="/createTest">
             <div class="col l12 m12 s12">
                 <div class="card red darken-3">
