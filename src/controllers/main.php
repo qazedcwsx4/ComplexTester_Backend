@@ -2,7 +2,6 @@
 
 function main(&$model)
 {
-    if ()
     header("Access-Control-Allow-Origin: *");
     $manager = new MongoDB\Driver\Manager('mongodb+srv://admin:adamkrol69@complextesterdb-oplob.mongodb.net/test?retryWrites=true');
     $query = new MongoDB\Driver\Query([]);

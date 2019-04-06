@@ -14,7 +14,7 @@
 <?php include 'navbar.php' ?>
 <main class="container">
     <div class="row">
-        <form class="col s12">
+        <form class="col s12" method="post">
             <div class="row">
                 <div class="input-field col l6">
                     <input name="title" id="title" type="text" class="validate">
@@ -34,14 +34,17 @@
             <div id="questions">
 
             </div>
-                <div class="row">
-                    <a class="waves-effect waves-light btn-large" onclick="xd()">Dodaj nowe pytanie</a>
-                    <a class="waves-effect right waves-light btn-large">
+            <div class="row">
+                <a class="waves-effect waves-light btn-large" onclick="xd()">Dodaj nowe pytanie</a>
+
+                <div class="input-field col l12 m12 s12">
+                    <button class="waves-effect right waves-light btn-large" type="submit">
                         Wyślij
                         <i class="material-icons right">send</i>
-                    </a>
+                    </button>
                 </div>
 
+            </div>
         </form>
     </div>
 </main>
@@ -51,6 +54,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script>
     var n = 0;
+
     function xd() {
         $("#questions").append('<div class="row grey lighten-2" id="question">\n' +
             '                    <div class="col l6">\n' +
@@ -61,19 +65,19 @@
             '                        <div class="col l12">\n' +
             '                            <p>Poprawna odpowiedź:\n' +
             '                                <label class="right">\n' +
-            '                                    <input name="correctAnswer['+n+']" value="4" type="radio" checked/>\n' +
+            '                                    <input name="correctAnswer[' + n + ']" value="4" type="radio" checked/>\n' +
             '                                    <span>4</span>\n' +
             '                                </label>\n' +
             '                                <label class="right">\n' +
-            '                                    <input name="correctAnswer['+n+']" value="3" type="radio"/>\n' +
+            '                                    <input name="correctAnswer[' + n + ']" value="3" type="radio"/>\n' +
             '                                    <span>3&nbsp&nbsp&nbsp&nbsp&nbsp</span>\n' +
             '                                </label>\n' +
             '                                <label class="right">\n' +
-            '                                    <input name="correctAnswer['+n+']" value="2" type="radio"/>\n' +
+            '                                    <input name="correctAnswer[' + n + ']" value="2" type="radio"/>\n' +
             '                                    <span>2&nbsp&nbsp&nbsp&nbsp&nbsp</span>\n' +
             '                                </label>\n' +
             '                                <label class="right">\n' +
-            '                                    <input name="correctAnswer['+n+']" value="1" type="radio"/>\n' +
+            '                                    <input name="correctAnswer[' + n + ']" value="1" type="radio"/>\n' +
             '                                    <span>1&nbsp&nbsp&nbsp&nbsp&nbsp</span>\n' +
             '                                </label>\n' +
             '                            </p>\n' +
