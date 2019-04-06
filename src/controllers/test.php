@@ -13,6 +13,7 @@ function test(&$model, $api)
 
     $rows = $rows->toArray();
     $model['test'] = $rows[0];
+    $model['id'] = $_GET['id'];
 
     return 'testView';
 }

@@ -38,6 +38,7 @@
             </div>
         </a>
     </div>
+    <?php include 'footer.php' ?>
 </main>
 <div class="row">
 

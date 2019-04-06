@@ -9,14 +9,19 @@ function createTest(&$model)
         $tab['description'] = $_POST['description'];
         $questions = [];
         $question = [];
+
+        echo '<pre>';
+        var_dump($_POST);
+        echo '</pre>';
+
         for ($i = 0; $i < count($_POST['question']); $i++) {
             $question['id'] = $i;
             $question['answerContent'] = $_POST['question'][$i];
             $ans = [];
-            if ($_POST['ans1'] !== "") $ans[] = $_POST['ans1'][$i];
-            if ($_POST['ans2'] !== "") $ans[] = $_POST['ans2'][$i];
-            if ($_POST['ans3'] !== "") $ans[] = $_POST['ans3'][$i];
-            if ($_POST['ans4'] !== "") $ans[] = $_POST['ans4'][$i];
+            if ($_POST['ans1'][$i] != "") $ans[] = $_POST['ans1'][$i];
+            if ($_POST['ans2'][$i] != "") $ans[] = $_POST['ans2'][$i];
+            if ($_POST['ans3'][$i] != "") $ans[] = $_POST['ans3'][$i];
+            if ($_POST['ans4'][$i] != "") $ans[] = $_POST['ans4'][$i];
             $question['answers'] = $ans;
             $correct = $_POST['correctAnswer'][$i];
             $question['correctAnswer'] = $_POST["ans$correct"][$i];
@@ -32,7 +37,8 @@ function createTest(&$model)
         $id = $write->insert($tab);
         $result = $manager->executeBulkWrite('tester.tests', $write);
 
-        return 'redirect:/';
+        return 'empty';
+        //return 'redirect:/';
     }
 
 

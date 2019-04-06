@@ -23,6 +23,7 @@
     <div id="kutas" align="center"></div>
     <div class="row" id="kutas2"></div>
     <a id="next_pyt" class="waves-effect waves-light btn" onclick="twojstary()">Kolejne pytanie</a>
+    <?php include 'footer.php' ?>
 </main>
 <div class="row">
 
@@ -38,9 +39,9 @@
     var wszystkie_odp = 0;
     $(document).ready(
         function () {
-            $.getJSON('http://margo.qaze.org/api/getTest?id=5ca7d6fab4972512af1acae3', function (data) {
-                console.log( "success" );
-                $("#pkt").text(punkty+"/"+wszystkie_odp);
+            $.getJSON('http://margo.qaze.org/api/getTest?id=<?= $id?>', function (data) {
+                console.log("success");
+                $("#pkt").text(punkty + "/" + wszystkie_odp);
                 console.log(data[0].questions);
                 data_t = data[0].questions;
                 ilosc_pytan = data_t.length;
@@ -49,6 +50,7 @@
                 twojstary();
             })
         });
+
     function twojstary() {
         $("#next_pyt").hide();
         udzielono_odp = 0;
@@ -59,7 +61,7 @@
         if (last_len) {
             for (let i = 0; i < last_len; i++) {
                 $("#ZPYT" + i).remove();
-                $(".BR"+i).remove();
+                $(".BR" + i).remove();
             }
             $("#DPYT").remove();
             $(".DBR").remove();
@@ -71,10 +73,9 @@
         var uzyte_liczby = [];
         var licznik = 0;
         while (licznik < last_len) {
-            var i = Math.floor(Math.random()*last_len);
-            while (uzyte_liczby.includes(i))
-            {
-                i = Math.floor(Math.random()*last_len);
+            var i = Math.floor(Math.random() * last_len);
+            while (uzyte_liczby.includes(i)) {
+                i = Math.floor(Math.random() * last_len);
             }
             uzyte_liczby.push(i);
             console.log(i);
@@ -88,12 +89,13 @@
             licznik++;
         }
     }
+
     function dobra_odpowiedz() {
         if (!udzielono_odp) {
             wszystkie_odp++;
             udzielono_odp = 1;
             punkty++;
-            $("#pkt").text(punkty+"/"+wszystkie_odp);
+            $("#pkt").text(punkty + "/" + wszystkie_odp);
             $("#DPYT").removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large green");
             data_t.splice(index, 1);
             ilosc_pytan--;
@@ -101,18 +103,20 @@
             $("#next_pyt").show();
         }
     }
+
     function zla_odpowiedz(odpowiedz) {
         if (!udzielono_odp) {
             wszystkie_odp++;
             udzielono_odp = 1;
             console.log(odpowiedz);
-            $("#pkt").text(punkty+"/"+wszystkie_odp);
+            $("#pkt").text(punkty + "/" + wszystkie_odp);
             $("#DPYT").removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large green");
             $("#ZPYT" + odpowiedz).removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large red");
             index = Math.floor(Math.random() * ilosc_pytan);
             $("#next_pyt").show();
         }
     }
+
     function koniec_pytan() {
         $("#tresc").text("Koniec pytan   ");
     }
