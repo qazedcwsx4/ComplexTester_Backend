@@ -80,12 +80,11 @@
                 </div>
             </div>
         </div>
-        <a href="#">
+        <a href="/createTest">
             <div class="col l12 m12 s12">
                 <div class="card red darken-3">
                     <div class="card-content white-text">
                         <span class="card-title">Utwórz nowy test</span>
-
                     </div>
                 </div>
             </div>
