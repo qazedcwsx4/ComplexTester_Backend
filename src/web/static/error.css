@@ -1,0 +1,10 @@
+div.error {
+    color: red;
+    font-size: x-small;
+}
+
+div#file-error{
+    text-transform: none !important;
+    color: red;
+    font-size: x-small;
+}
