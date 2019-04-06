@@ -5,5 +5,6 @@ $routing = [
     '/test' => 'test',
     '/getTests' => 'getTests',
     '/getTest' => 'getTest',
-    '/createTest' => 'createTest'
+    '/createTest' => 'createTest',
+    '/postTest' => 'postTest'
 ];
