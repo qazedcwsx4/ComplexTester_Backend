@@ -2,20 +2,17 @@
 
 function test(&$model, $api)
 {
+    if (!isset($_GET['id'])) {
+        echo('spierdalaj');
+        return 'empty';
+    }
     $manager = new MongoDB\Driver\Manager('mongodb+srv://admin:adamkrol69@complextesterdb-oplob.mongodb.net/test?retryWrites=true');
-
-    $dec = json_decode($json,true);
-
-    $write = new MongoDB\Driver\BulkWrite;
-    $id = $write->insert($dec);
-    $result = $manager->executeBulkWrite('tester.tests', $write);
+    $query = new MongoDB\Driver\Query(['_id' => new MongoDB\BSON\ObjectId($_GET['id'])]);
+    $rows = $manager->executeQuery('tester.tests', $query); // $mongo contains the connection object to MongoDB
 
 
+    $rows = $rows->toArray();
+    $model['test'] = $rows[0];
 
-    echo '<pre>';
-    var_dump($dec);
-    echo '</pre>';
-
-    echo "XDDD";
-    return 'empty';
+    return 'testView';
 }
