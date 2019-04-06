@@ -11,14 +11,7 @@
 
 
 <body class="grey lighten-4">
-<nav>
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Complex Tester</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="sass.html">Start</a></li>
-        </ul>
-    </div>
-</nav>
+<?php include 'navbar.php' ?>
 <main class="container">
     <div class="row">
         <?php foreach ($tests as $test): ?>
@@ -30,7 +23,7 @@
                         <p class="bold right"><?= $test->author ?></p>
                     </div>
                     <div class="card-action">
-                        <a href="#">Rozpocznij ten test</a>
+                        <a href="/test?id=<?= (string)$test->_id ?>">Rozpocznij ten test</a>
                     </div>
                 </div>
             </div>
