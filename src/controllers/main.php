@@ -2,25 +2,16 @@
 
 function main(&$model)
 {
-    $file = 'orders.txt';
+    header("Access-Control-Allow-Origin: *");
+    $manager = new MongoDB\Driver\Manager('mongodb+srv://admin:adamkrol69@complextesterdb-oplob.mongodb.net/test?retryWrites=true');
+    $query = new MongoDB\Driver\Query([]);
+    $rows = $manager->executeQuery('tester.tests', $query); // $mongo contains the connection object to MongoDB
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = trim((string)$_POST['email']);
-        $purpose = trim((string)$_POST['purpose']);
-        $description = trim((string)$_POST['description']);
-        $audience = $_POST['audience'];
-        $platforms = $_POST['platforms'];
+    $model['tests'] = $rows->toArray();
 
-        $message =
-            'email: '.$email."\r\n".
-            'purpose: '.$purpose."\r\n".
-            'audience: '.$audience."\r\n".
-            'platforms: '.$platforms."\r\n".
-            'description: '.$description."\r\n"."\r\n";
 
-        file_put_contents($file,$message,FILE_APPEND);
-        $_SESSION['toasts'][]="Your message was delivered. I will get back to you as soon as I can.";
-        return 'redirect:/';
-    }
+    //echo '<pre>';
+    //var_dump($rows);
+    //echo '</pre>';
     return 'mainView';
 }
