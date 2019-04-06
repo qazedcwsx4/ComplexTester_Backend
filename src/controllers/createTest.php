@@ -1,0 +1,14 @@
+<?php
+
+function createTest(&$model, $api)
+{
+    $manager = new MongoDB\Driver\Manager('mongodb+srv://admin:adamkrol69@complextesterdb-oplob.mongodb.net/test?retryWrites=true');
+    //$query = new MongoDB\Driver\Query(['_id' => new MongoDB\BSON\ObjectId($_GET['id'])]);
+    //$rows = $manager->executeQuery('tester.tests', $query); // $mongo contains the connection object to MongoDB
+
+
+    //$rows = $rows->toArray();
+    //$model['test'] = $rows[0];
+
+    return 'createTestView';
+}
