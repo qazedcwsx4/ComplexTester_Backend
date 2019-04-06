@@ -12,14 +12,109 @@
 
 <body class="grey lighten-4">
 <?php include 'navbar.php' ?>
-<main class="container">
+<main id="main" class="container">
     <div class="row">
         KURWA ROBISZ TEST O <?= $test->name ?>
     </div>
+    <div id="pkt" class="row">hujdupa</div>
+    <div id="kutas" align="center"></div>
+    <div class="row" id="kutas2"></div>
+    <a id="next_pyt" class="waves-effect waves-light btn" onclick="twojstary()">Kolejne pytanie</a>
+
 </main>
 <div class="row">
 
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+    var data_t = [];
+    var index = 0;
+    var last_len = 0;
+    var punkty = 0;
+    var ilosc_pytan;
+    var udzielono_odp = 0;
+    var wszystkie_odp = 0;
+    $(document).ready(
+        function () {
+            $.getJSON('http://margo.qaze.org/api/getTest?id=5ca7d6fab4972512af1acae3', function (data) {
+                console.log( "success" );
+                $("#pkt").text("twoje pkt :" + punkty+"/"+wszystkie_odp);
+                console.log(data[0].questions);
+                data_t = data[0].questions;
+                ilosc_pytan = data_t.length;
+                index = Math.floor(Math.random() * ilosc_pytan);
+                $("#kutas2").append('<div class="col s12 blue" id="tresc"></div>');
+                twojstary();
+            })
+        });
+    function twojstary() {
+        $("#next_pyt").hide();
+        udzielono_odp = 0;
+        if (ilosc_pytan <= 0) {
+            koniec_pytan();
+        }
+        console.log(data_t);
+        if (last_len) {
+            for (let i = 0; i < last_len; i++) {
+                $("#ZPYT" + i).remove();
+                $(".BR"+i).remove();
+            }
+            $("#DPYT").remove();
+            $(".DBR").remove();
+        }
+        $("#tresc").text(data_t[index].answerContent);
+        var answers = data_t[index].answers;
+        let poprawna_odp = data_t[index].correctAnswer;
+        last_len = answers.length;
+        var uzyte_liczby = [];
+        var licznik = 0;
+        while (licznik < last_len) {
+            var i = Math.floor(Math.random()*last_len);
+            while (uzyte_liczby.includes(i))
+            {
+                i = Math.floor(Math.random()*last_len);
+            }
+            uzyte_liczby.push(i);
+            console.log(i);
+            if (answers[i] === poprawna_odp) {
+                $("#kutas2").append('<div onclick="dobra_odpowiedz()" class="waves-effect waves-light btn-large blue" id="DPYT">' + answers[i] + '</div>' +
+                    '<br class="DBR"/>');
+            } else {
+                $("#kutas2").append('<div onclick="zla_odpowiedz(' + i + ')" class="waves-effect waves-light btn-large blue" id="ZPYT' + i + '">' + answers[i] + '</div>' +
+                    '<br class="BR' + i + '"/>');
+            }
+            licznik++;
+        }
+    }
+    function dobra_odpowiedz() {
+        if (!udzielono_odp) {
+            wszystkie_odp++;
+            udzielono_odp = 1;
+            punkty++;
+            $("#pkt").text("twoje pkt :" + punkty+"/"+wszystkie_odp);
+            $("#DPYT").removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large green");
+            data_t.splice(index, 1);
+            ilosc_pytan--;
+            index = Math.floor(Math.random() * ilosc_pytan);
+            $("#next_pyt").show();
+        }
+    }
+    function zla_odpowiedz(odpowiedz) {
+        if (!udzielono_odp) {
+            wszystkie_odp++;
+            udzielono_odp = 1;
+            console.log(odpowiedz);
+            $("#pkt").text("twoje pkt :" + punkty+"/"+wszystkie_odp);
+            $("#DPYT").removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large green");
+            $("#ZPYT" + odpowiedz).removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large red");
+            index = Math.floor(Math.random() * ilosc_pytan);
+            $("#next_pyt").show();
+        }
+    }
+    function koniec_pytan() {
+        $("#tresc").text("Koniec pytan   ");
+    }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 </body>
 </html>
