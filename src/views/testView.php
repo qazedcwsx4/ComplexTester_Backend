@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?= $test->name ?></title>
     <meta name="viewport" content="width = device-width, initial-scale = 1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="static/error.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 
@@ -14,13 +14,15 @@
 <?php include 'navbar.php' ?>
 <main id="main" class="container">
     <div class="row">
-        KURWA ROBISZ TEST O <?= $test->name ?>
+        <br>
+        <div id="chuj" class="col l1">
+            <i class="material-icons">stars</i>
+        </div>
+        <div id="pkt" class="col l11"></div>
     </div>
-    <div id="pkt" class="row">hujdupa</div>
     <div id="kutas" align="center"></div>
     <div class="row" id="kutas2"></div>
     <a id="next_pyt" class="waves-effect waves-light btn" onclick="twojstary()">Kolejne pytanie</a>
-
 </main>
 <div class="row">
 
@@ -38,12 +40,12 @@
         function () {
             $.getJSON('http://margo.qaze.org/api/getTest?id=5ca7d6fab4972512af1acae3', function (data) {
                 console.log( "success" );
-                $("#pkt").text("twoje pkt :" + punkty+"/"+wszystkie_odp);
+                $("#pkt").text(punkty+"/"+wszystkie_odp);
                 console.log(data[0].questions);
                 data_t = data[0].questions;
                 ilosc_pytan = data_t.length;
                 index = Math.floor(Math.random() * ilosc_pytan);
-                $("#kutas2").append('<div class="col s12 blue" id="tresc"></div>');
+                $("#kutas2").append('<div id="tresc"></div>');
                 twojstary();
             })
         });
@@ -91,7 +93,7 @@
             wszystkie_odp++;
             udzielono_odp = 1;
             punkty++;
-            $("#pkt").text("twoje pkt :" + punkty+"/"+wszystkie_odp);
+            $("#pkt").text(punkty+"/"+wszystkie_odp);
             $("#DPYT").removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large green");
             data_t.splice(index, 1);
             ilosc_pytan--;
@@ -104,7 +106,7 @@
             wszystkie_odp++;
             udzielono_odp = 1;
             console.log(odpowiedz);
-            $("#pkt").text("twoje pkt :" + punkty+"/"+wszystkie_odp);
+            $("#pkt").text(punkty+"/"+wszystkie_odp);
             $("#DPYT").removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large green");
             $("#ZPYT" + odpowiedz).removeClass("waves-effect waves-light btn-large blue").addClass("waves-effect waves-light btn-large red");
             index = Math.floor(Math.random() * ilosc_pytan);
